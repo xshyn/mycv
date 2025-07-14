@@ -13,8 +13,8 @@ export class UsersService {
     return this.repo.save(createUserDto);
   }
 
-  findAll() {
-    return this.repo.find();
+  find(email: string | null = null) {
+    return this.repo.find({ ...(email && { where: { email } }) });
   }
 
   findOne(id: number) {
