@@ -2,12 +2,20 @@
 GET http://localhost:3000/auth/
 ### get one user by id
 GET http://localhost:3000/auth/1
-### create user
-POST http://localhost:3000/auth
+### user signup
+POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-    "email": "shynah@gmail.com",
+    "email": "shyna@gmail.com",
+    "password": "shynah"
+}
+### user signin
+POST http://localhost:3000/auth/signin
+Content-Type: application/json
+
+{
+    "email": "shyna@gmail.com",
     "password": "shynah"
 }
 
