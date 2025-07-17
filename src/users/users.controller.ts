@@ -36,6 +36,15 @@ export class UsersController {
     return user;
   }
 
+  @Get('/whoami')
+  whoami(@Session() session: any) {
+    return this.usersService.findOne(session.userId);
+  }
+  @Get('/signout')
+  async signout(@Session() session: any) {
+    session.userId = null;
+  }
+
   @Get()
   findAll() {
     return this.usersService.find();

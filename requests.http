@@ -18,6 +18,11 @@ Content-Type: application/json
     "email": "shyna@gmail.com",
     "password": "shynah"
 }
+### user signout
+GET http://localhost:3000/auth/signout
+
+### whoami
+GET http://localhost:3000/auth/whoami
 
 ### update user
 PATCH http://localhost:3000/auth/1
