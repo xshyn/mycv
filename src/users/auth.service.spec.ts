@@ -8,12 +8,23 @@ import { BadRequestException, NotFoundException } from '@nestjs/common';
 describe('AuthService', () => {
   let service: AuthService;
   let fakeUsersService: Partial<UsersService>;
+  let users: User[] = [];
 
   beforeEach(async () => {
     fakeUsersService = {
-      find: () => Promise.resolve([]),
-      create: ({ email, password }: CreateUserDto) =>
-        Promise.resolve({ id: 1, email, password }),
+      find: (email: string) => {
+        const filteredUsers = users.filter((user) => user.email == email);
+        return Promise.resolve(filteredUsers);
+      },
+      create: ({ email, password }: CreateUserDto) => {
+        const user = {
+          id: Math.floor(Math.random() * 999999),
+          email,
+          password,
+        };
+        users.push(user);
+        return Promise.resolve(user);
+      },
     };
 
     const module = await Test.createTestingModule({
@@ -58,5 +69,16 @@ describe('AuthService', () => {
     await expect(service.signin({ email: 'a', password: '1' })).rejects.toThrow(
       BadRequestException,
     );
+  });
+  it('return a user if correct password is provided', async () => {
+    await service.signup({
+      email: 'aaaa@bbb.com',
+      password: 'password',
+    });
+    const user = await service.signin({
+      email: 'aaaa@bbb.com',
+      password: 'password',
+    });
+    expect(user).toBeDefined();
   });
 });
