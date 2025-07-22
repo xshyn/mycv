@@ -14,7 +14,6 @@ describe('Authentiaction System (e2e)', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
-    setupApp(app);
     await app.init();
   });
 
