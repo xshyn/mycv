@@ -18,7 +18,7 @@ describe('Authentiaction System (e2e)', () => {
     await app.init();
   });
 
-  it('/ (POST)', () => {
+  it('/auth/signup (POST)', () => {
     const emailVar = 'asdf@asdfd.com';
     return request(app.getHttpServer())
       .post('/auth/signup')
@@ -30,4 +30,5 @@ describe('Authentiaction System (e2e)', () => {
         expect(email).toEqual(emailVar);
       });
   });
+  it('/auth/signin (POST)', () => {});
 });
