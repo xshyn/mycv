@@ -9,8 +9,6 @@ import {
 
 export class CreateReportDto {
   @IsNumber()
-  id: number;
-  @IsNumber()
   price: number;
   @IsString()
   make: string;

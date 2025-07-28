@@ -1,5 +1,7 @@
-import { Column, PrimaryGeneratedColumn } from 'typeorm';
+import { User } from 'src/users/entities/user.entity';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
+@Entity()
 export class Report {
   @PrimaryGeneratedColumn()
   id: number;
@@ -24,4 +26,7 @@ export class Report {
 
   @Column()
   mileage: number;
+
+  @ManyToOne(() => User, (user) => user.reports)
+  user: User;
 }

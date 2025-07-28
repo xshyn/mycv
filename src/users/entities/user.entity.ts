@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Exclude } from 'class-transformer';
+import { Report } from 'src/reports/entities/report.entity';
 
 @Entity()
 export class User {
@@ -12,4 +13,7 @@ export class User {
   @Column()
   @Exclude()
   password: string;
+
+  @OneToMany(() => Report, (report) => report.user)
+  reports: Report[];
 }
